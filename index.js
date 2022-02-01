@@ -26,7 +26,7 @@ const connected = async () => {
       console.log('Server has been started!');
     })
   } catch (e) {
-    console.log(e);
+    console.log(e); 
   }
 }
 
