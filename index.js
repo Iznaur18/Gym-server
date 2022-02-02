@@ -1,20 +1,20 @@
-const express = require('express')
-const mongoose = require('mongoose')
-const cors = require('cors')
-const path = require('path')
+const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");
+const path = require("path");
 require("dotenv").config();
 
-const app = express()
-const port = process.env.PORT
+const app = express();
+const port = process.env.PORT || 5000;
 
-app.use(cors())
-app.use(express.json())
-app.use('/static', express.static(path.resolve(__dirname, 'static')));
-app.use(require('./routes'))
-
+app.use(cors());
+app.use(express.json());
+app.use("/static", express.static(path.resolve(__dirname, "static")));
 app.use(express.static(path.resolve(__dirname, "client", "build")));
-app.get("*", (req,res) => {
-  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
+app.use(require("./routes"));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
 });
 
 const connected = async () => {
